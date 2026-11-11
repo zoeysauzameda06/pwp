@@ -1,4 +1,7 @@
 import 'flowbite';
+import { contactForm } from './contact-form.js';
+
+contactForm();
 
 // Mobile menu toggle
 const btn = document.getElementById('mobile-menu-btn');
@@ -108,32 +111,3 @@ document.addEventListener("DOMContentLoaded", () => {
     renderBreeds("Small");
     setupFilterButtons();
 });
-// ===== Contact form =====
-const contactForm = document.getElementById('contact-form');
-const contactStatus = document.getElementById('contact-status');
-
-if (contactForm) {
-    contactForm.addEventListener('submit', async (event) => {
-        event.preventDefault();
-        contactStatus.textContent = 'Sending...';
-        contactStatus.className = 'text-sm text-stone-600';
-
-        const data = Object.fromEntries(new FormData(contactForm));
-
-        try {
-            const response = await fetch('/apis/contact', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data),
-            });
-            const result = await response.json();
-
-            contactStatus.textContent = result.message;
-            contactStatus.className = response.ok ? 'text-sm text-teal-800' : 'text-sm text-red-600';
-            if (response.ok) contactForm.reset();
-        } catch {
-            contactStatus.textContent = 'Could not reach the server. Please try again.';
-            contactStatus.className = 'text-sm text-red-600';
-        }
-    });
-}

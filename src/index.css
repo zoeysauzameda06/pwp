@@ -14,3 +14,9 @@ html {
 #contact {
     scroll-margin-top: 80px;
 }
+
+/* Honeypot field: kept offscreen so real users never see it */
+.website {
+    position: absolute;
+    left: -9999px;
+}
