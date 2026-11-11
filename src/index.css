@@ -7,3 +7,10 @@
 html {
     scroll-behavior: smooth;
 }
+
+#breeds,
+#costs,
+#checklist,
+#contact {
+    scroll-margin-top: 80px;
+}
